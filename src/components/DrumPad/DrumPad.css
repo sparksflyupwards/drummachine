@@ -1,0 +1,35 @@
+
+
+.drum-pad-button {
+    width: 17vw;
+    height: 17vh;
+    background-color: #fff;
+    box-shadow: 1.2px .8px .4px .2px #0ff;
+    border-radius: 50%;
+    animation: buttonPressed 2s forwards;
+    font-size: 0;
+
+}
+
+
+.drum-pad-button:hover {   
+    background-color: white;
+    transition: 2s;
+}
+.drum-pad-button:active {
+    background-color: red;
+    transform: translateY(40px);
+    opacity: 0.2;
+}
+
+
+@keyframes buttonPressed {
+
+    from{
+        background-color: rgb(226, 226, 226);
+        
+    }
+    to {
+        background-color: chartreuse;
+    }
+}
