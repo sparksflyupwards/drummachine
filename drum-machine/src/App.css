@@ -1,19 +1,16 @@
 .App {
   text-align: center;
-  height: 100vh;
-  background-color: #FFC857
+  background-color: #FFC857;
+  width: 60%;
+  margin: 50% 25%;  
+  height: 100%;
+  
   /* #FF57BB*/;
 }
 
 #display {
   display: flex;
   flex-wrap: wrap;
-
-  
-  margin: 0% 25%;
-  width: 60%;
-  margin-top: 50%;   
-  transform: translate(0, -40%)                       /* 3 */
   
 }
 
@@ -31,6 +28,10 @@
   font-size: xx-large;
   display: block;
   position: relative;
-  top: 15%;
+  top: 25%;
+  right:8%;
+  transform: translate(0, -25%);
+  color: #323031;
+  font-family: 'Abril Fatface', cursive;
 }
 
