@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import Helmet from 'react-helmet';
 import DrumPad from './components/DrumPad/DrumPad'
-
+import AppTitle from './components/AppTitle/AppTitle'
 
 import drum1 from './media/drum-one/drum1.wav';
 import drum2 from './media/drum-one/drum2.wav';
@@ -16,10 +16,6 @@ import drum9 from './media/drum-one/drum9.wav';
 
 
 
-let AppTitle = ()=>{
-  const style = {}
-  return(<div id="title">DRUM PAD</div>)
-}
 
 class App extends React.Component{
   constructor(props){

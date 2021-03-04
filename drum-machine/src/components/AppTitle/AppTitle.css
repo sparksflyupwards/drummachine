@@ -1,0 +1,11 @@
+#title {
+    text-align: center;
+    font-size: xx-large;
+    display: block;
+    position: relative;
+    top: 25%;
+    right:15%;
+    transform: translate(0, -25%);
+    color: #1B909D;
+    font-family: 'Abril Fatface', cursive;
+  }
