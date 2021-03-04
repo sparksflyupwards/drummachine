@@ -15,6 +15,12 @@ import drum8 from './media/drum-one/drum8.wav';
 import drum9 from './media/drum-one/drum9.wav';
 
 
+
+let AppTitle = ()=>{
+  const style = {}
+  return(<div id="title">DRUM PAD</div>)
+}
+
 class App extends React.Component{
   constructor(props){
     super(props)
@@ -23,7 +29,7 @@ class App extends React.Component{
 
 
     this.state = {
-      sound_playing: ""
+      sound_playing: "",
     }
     
   }
@@ -106,12 +112,8 @@ class App extends React.Component{
     }
 
     this.setState({sound_playing: sound_playing});
-    
-
-    console.log("WE TRY: " + soundName)
-    //const audio_class= "audio-element-"+soundName;
-    console.log(document.getElementById(soundName))
     const audioEl = document.getElementById(soundName)
+
     if (audioEl.paused) {
       audioEl.play();
      }else{
@@ -122,23 +124,26 @@ class App extends React.Component{
   render(){
     return (
       <div className="App" id="drum-machine" onKeyDown={this.handleKeyPress} >
-      Hellow WOrld
-      <div id="display">
+        <AppTitle/>
+    
+        <div id="display"> 
+
         
-      <DrumPad playAudio={this.playSound} keystroke="Q" sound="drum1" soundFile={drum1}/>
-      <DrumPad playAudio={this.playSound} keystroke="W" sound="drum2" soundFile={drum2}/>
-      <DrumPad playAudio={this.playSound} keystroke="E" sound="drum3" soundFile={drum3}/>
-      <DrumPad playAudio={this.playSound} keystroke="A" sound="drum4" soundFile={drum4}/>
-      <DrumPad playAudio={this.playSound} keystroke="S" sound="drum5" soundFile={drum5}/>
-      <DrumPad playAudio={this.playSound} keystroke="D" sound="drum6" soundFile={drum6}/>
-      <DrumPad playAudio={this.playSound} keystroke="Z" sound="drum7" soundFile={drum7}/>
-      <DrumPad playAudio={this.playSound} keystroke="X" sound="drum8" soundFile={drum8}/>
-      <DrumPad playAudio={this.playSound} keystroke="C" sound="drum9" soundFile={drum9}/>
-      {this.state.sound_playing != "" &&
-      <div id="sound-choice-display">
-        Currently Playing: {this.state.sound_playing}</div>
-           }
-      </div>
+        
+            <DrumPad playAudio={this.playSound} keystroke="Q" sound="drum1" soundFile={drum1}/>
+            <DrumPad playAudio={this.playSound} keystroke="W" sound="drum2" soundFile={drum2}/>
+            <DrumPad playAudio={this.playSound} keystroke="E" sound="drum3" soundFile={drum3}/>
+            <DrumPad playAudio={this.playSound} keystroke="A" sound="drum4" soundFile={drum4}/>
+            <DrumPad playAudio={this.playSound} keystroke="S" sound="drum5" soundFile={drum5}/>
+            <DrumPad playAudio={this.playSound} keystroke="D" sound="drum6" soundFile={drum6}/>
+            <DrumPad playAudio={this.playSound} keystroke="Z" sound="drum7" soundFile={drum7}/>
+            <DrumPad playAudio={this.playSound} keystroke="X" sound="drum8" soundFile={drum8}/>
+            <DrumPad playAudio={this.playSound} keystroke="C" sound="drum9" soundFile={drum9}/>
+            {this.state.sound_playing != "" &&
+            <div id="sound-choice-display">
+              Currently Playing: {this.state.sound_playing}</div>
+                }
+        </div>
   
       
 

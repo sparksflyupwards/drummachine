@@ -1,13 +1,15 @@
 
 
 .drum-pad-button {
-    width: 17vw;
-    height: 17vh;
-    background-color: #fff;
-    box-shadow: 1.2px .8px .4px .2px #0ff;
-    border-radius: 50%;
-    animation: buttonPressed 2s forwards;
-    font-size: 0;
+    width: 13vw;
+    height: 13vw;
+    background-color: #DB3A34;
+    /* #F7E8A4;*/
+    box-shadow: 2.2px 1.8px .4px .2px #177E89;
+    /* #6EFAFB; */
+    font-size: 10;
+    margin-right: 5vw;
+    margin-top: 22px;
 
 }
 
@@ -16,13 +18,8 @@
     background-color: white;
     transition: 2s;
 }
-.drum-pad-button:active {
-    background-color: red;
-    transform: translateY(40px);
-    opacity: 0.2;
-}
 
-
+/*
 @keyframes buttonPressed {
 
     from{
@@ -33,3 +30,12 @@
         background-color: chartreuse;
     }
 }
+*/
+
+.drum-pad-button:active {
+    background-color: red;
+    transform: translateY(40px);
+    animation: buttonPressed 3s infinite; 
+    opacity: 0.2;
+}
+
