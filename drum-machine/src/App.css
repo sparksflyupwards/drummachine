@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  display: flex;
+  height: 100vh;
   background-color: #FFC857
   /* #FF57BB*/;
 }
@@ -10,10 +10,10 @@
   flex-wrap: wrap;
 
   
-  margin: 0% auto;
+  margin: 0% 25%;
   width: 60%;
   margin-top: 50%;   
-  transform: translate(0, -50%)                       /* 3 */
+  transform: translate(0, -40%)                       /* 3 */
   
 }
 
@@ -28,7 +28,9 @@
 
 #title {
   text-align: center;
-  margin-top: 20%;
   font-size: xx-large;
+  display: block;
+  position: relative;
+  top: 15%;
 }
 
