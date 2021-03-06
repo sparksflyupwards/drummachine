@@ -1,8 +1,12 @@
 import './App.css';
 import React from 'react';
 import Helmet from 'react-helmet';
-import DrumPad from './components/DrumPad/DrumPad'
-import AppTitle from './components/AppTitle/AppTitle'
+
+
+import DrumPad from './components/DrumPad/DrumPad';
+import AppTitle from './components/AppTitle/AppTitle';
+import SoundChoiceDisplay from './components/SoundChoiceDisplay/SoundChoiceDisplay';
+
 
 import drum1 from './media/drum-one/drum1.wav';
 import drum2 from './media/drum-one/drum2.wav';
@@ -122,7 +126,7 @@ class App extends React.Component{
       <div className="App" id="drum-machine" onKeyDown={this.handleKeyPress} >
         <AppTitle/>
     
-        <div id="display"> 
+          <div id="display"> 
 
         
         
@@ -135,11 +139,11 @@ class App extends React.Component{
             <DrumPad playAudio={this.playSound} keystroke="Z" sound="drum7" soundFile={drum7}/>
             <DrumPad playAudio={this.playSound} keystroke="X" sound="drum8" soundFile={drum8}/>
             <DrumPad playAudio={this.playSound} keystroke="C" sound="drum9" soundFile={drum9}/>
+           
             {this.state.sound_playing != "" &&
-            <div id="sound-choice-display">
-              Currently Playing: {this.state.sound_playing}</div>
+           <SoundChoiceDisplay soundPlaying = {this.state.sound_playing}/>
                 }
-        </div>
+          </div>
   
       
 
