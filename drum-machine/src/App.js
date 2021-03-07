@@ -1,70 +1,45 @@
-import './App.css';
-import React from 'react';
-import Helmet from 'react-helmet';
+import "./App.css";
+import React from "react";
+import Helmet from "react-helmet";
 
+import DrumPad from "./components/DrumPad/DrumPad";
+import AppTitle from "./components/AppTitle/AppTitle";
+import SoundChoiceDisplay from "./components/SoundChoiceDisplay/SoundChoiceDisplay";
 
-import DrumPad from './components/DrumPad/DrumPad';
-import AppTitle from './components/AppTitle/AppTitle';
-import SoundChoiceDisplay from './components/SoundChoiceDisplay/SoundChoiceDisplay';
+import drum1 from "./media/drum-one/drum1.wav";
+import drum2 from "./media/drum-one/drum2.wav";
+import drum3 from "./media/drum-one/drum3.wav";
+import drum4 from "./media/drum-one/drum4.wav";
+import drum5 from "./media/drum-one/drum5.wav";
+import drum6 from "./media/drum-one/drum6.wav";
+import drum7 from "./media/drum-one/drum7.wav";
+import drum8 from "./media/drum-one/drum8.wav";
+import drum9 from "./media/drum-one/drum9.wav";
 
-
-import drum1 from './media/drum-one/drum1.wav';
-import drum2 from './media/drum-one/drum2.wav';
-import drum3 from './media/drum-one/drum3.wav';
-import drum4 from './media/drum-one/drum4.wav';
-import drum5 from './media/drum-one/drum5.wav';
-import drum6 from './media/drum-one/drum6.wav';
-import drum7 from './media/drum-one/drum7.wav';
-import drum8 from './media/drum-one/drum8.wav';
-import drum9 from './media/drum-one/drum9.wav';
-
-
-
-
-class App extends React.Component{
-  constructor(props){
-    super(props)
+class App extends React.Component {
+  constructor(props) {
+    super(props);
     this.playSound = this.playSound.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
-
 
     this.state = {
       sound_playing: "",
       active_sounds: 0,
-      pad_keys: ["Q","W","E","A","S","D","Z","X","C"]
-    }
-    
+      pad_keys: ["Q", "W", "E", "A", "S", "D", "Z", "X", "C"],
+    };
   }
 
-  componentDidMount(){
-    document.addEventListener("keypress", this.handleKeyPress.bind(this))
-
-    /*
-    for(let i=0; i<this.state.pad_keys.length; i++){
-      let audioEl = document.getElementById(this.state.pad_keys[i])
-      audioEl.addEventListener("ended",()=>{
-        this.setState((state)=>{
-          return ({active_sounds: state.active_sounds - 1});
-          }, ()=>{console.log(this.state.active_sounds)
-                  }
-          );
-      })
-    }
-    */
-
-    
-    
-    
+  componentDidMount() {
+    document.addEventListener("keypress", this.handleKeyPress.bind(this));
   }
-
 
   handleKeyPress = (event) => {
     let keypressed = event.key;
 
-    if(keypressed.toUpperCase() == keypressed){
+    if (keypressed.toUpperCase() == keypressed) {
       keypressed = keypressed.toLowerCase();
     }
-    switch(keypressed){
+    switch (keypressed) {
       case "q":
         this.playSound("Q");
         break;
@@ -92,12 +67,14 @@ class App extends React.Component{
       case "c":
         this.playSound("C");
         break;
-
+      default:
+        break;
     }
-  }  
-  playSound(soundName){
+  };
+
+  playSound(soundName) {
     let sound_playing = "";
-    switch(soundName){
+    switch (soundName) {
       case "Q":
         sound_playing = "drum1";
         break;
@@ -127,62 +104,107 @@ class App extends React.Component{
         break;
       default:
         break;
-
     }
 
-  
-  this.setState((state)=>{
-      return ({sound_playing: sound_playing,
-                  active_sounds: state.active_sounds + 1});
+    this.setState(
+      (state) => {
+        return {
+          sound_playing: sound_playing,
+          active_sounds: state.active_sounds + 1,
+        };
       },
-      ()=>{
+      () => {
         //do something once state has changed
-        setInterval(()=>this.setState((state)=>{return{active_sounds: state.active_sounds-1}}), 1000)
-      })
-    const audioEl = document.getElementById(soundName)
+        setInterval(
+          () =>
+            this.setState((state) => {
+              return { active_sounds: state.active_sounds - 1 };
+            }),
+          1000
+        );
+      }
+    );
+    const audioEl = document.getElementById(soundName);
 
     if (audioEl.paused) {
       audioEl.play();
-  
-     }else{
-      audioEl.currentTime = 0
+    } else {
+      audioEl.currentTime = 0;
     }
   }
 
-  render(){
+  render() {
     return (
-      <div className="App" id="drum-machine" onKeyDown={this.handleKeyPress} >
-        <AppTitle/>
-    
-          <div id="display"> 
+      <div className="App" id="drum-machine" onKeyDown={this.handleKeyPress}>
+        <AppTitle />
 
-        
-        
-            <DrumPad playAudio={this.playSound} keystroke="Q" sound="drum1" soundFile={drum1}/>
-            <DrumPad playAudio={this.playSound} keystroke="W" sound="drum2" soundFile={drum2}/>
-            <DrumPad playAudio={this.playSound} keystroke="E" sound="drum3" soundFile={drum3}/>
-            <DrumPad playAudio={this.playSound} keystroke="A" sound="drum4" soundFile={drum4}/>
-            <DrumPad playAudio={this.playSound} keystroke="S" sound="drum5" soundFile={drum5}/>
-            <DrumPad playAudio={this.playSound} keystroke="D" sound="drum6" soundFile={drum6}/>
-            <DrumPad playAudio={this.playSound} keystroke="Z" sound="drum7" soundFile={drum7}/>
-            <DrumPad playAudio={this.playSound} keystroke="X" sound="drum8" soundFile={drum8}/>
-            <DrumPad playAudio={this.playSound} keystroke="C" sound="drum9" soundFile={drum9}/>
-           
-            {this.state.active_sounds != 0 &&
-           <SoundChoiceDisplay soundPlaying = {this.state.sound_playing}/>
-                }
-          </div>
-  
-      
+        <div id="display">
+          <DrumPad
+            playAudio={this.playSound}
+            keystroke="Q"
+            sound="drum1"
+            soundFile={drum1}
+          />
+          <DrumPad
+            playAudio={this.playSound}
+            keystroke="W"
+            sound="drum2"
+            soundFile={drum2}
+          />
+          <DrumPad
+            playAudio={this.playSound}
+            keystroke="E"
+            sound="drum3"
+            soundFile={drum3}
+          />
+          <DrumPad
+            playAudio={this.playSound}
+            keystroke="A"
+            sound="drum4"
+            soundFile={drum4}
+          />
+          <DrumPad
+            playAudio={this.playSound}
+            keystroke="S"
+            sound="drum5"
+            soundFile={drum5}
+          />
+          <DrumPad
+            playAudio={this.playSound}
+            keystroke="D"
+            sound="drum6"
+            soundFile={drum6}
+          />
+          <DrumPad
+            playAudio={this.playSound}
+            keystroke="Z"
+            sound="drum7"
+            soundFile={drum7}
+          />
+          <DrumPad
+            playAudio={this.playSound}
+            keystroke="X"
+            sound="drum8"
+            soundFile={drum8}
+          />
+          <DrumPad
+            playAudio={this.playSound}
+            keystroke="C"
+            sound="drum9"
+            soundFile={drum9}
+          />
 
-      <Helmet>
-      <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"/>
-      </Helmet>
-   </div>
+          {this.state.active_sounds != 0 && (
+            <SoundChoiceDisplay soundPlaying={this.state.sound_playing} />
+          )}
+        </div>
+
+        <Helmet>
+          <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js" />
+        </Helmet>
+      </div>
     );
   }
-   
- 
 }
 
 export default App;
