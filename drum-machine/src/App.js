@@ -30,12 +30,31 @@ class App extends React.Component{
 
     this.state = {
       sound_playing: "",
+      active_sounds: 0,
+      pad_keys: ["Q","W","E","A","S","D","Z","X","C"]
     }
     
   }
 
   componentDidMount(){
     document.addEventListener("keypress", this.handleKeyPress.bind(this))
+
+    /*
+    for(let i=0; i<this.state.pad_keys.length; i++){
+      let audioEl = document.getElementById(this.state.pad_keys[i])
+      audioEl.addEventListener("ended",()=>{
+        this.setState((state)=>{
+          return ({active_sounds: state.active_sounds - 1});
+          }, ()=>{console.log(this.state.active_sounds)
+                  }
+          );
+      })
+    }
+    */
+
+    
+    
+    
   }
 
 
@@ -111,11 +130,20 @@ class App extends React.Component{
 
     }
 
-    this.setState({sound_playing: sound_playing});
+  
+  this.setState((state)=>{
+      return ({sound_playing: sound_playing,
+                  active_sounds: state.active_sounds + 1});
+      },
+      ()=>{
+        //do something once state has changed
+        setInterval(()=>this.setState((state)=>{return{active_sounds: state.active_sounds-1}}), 1000)
+      })
     const audioEl = document.getElementById(soundName)
 
     if (audioEl.paused) {
       audioEl.play();
+  
      }else{
       audioEl.currentTime = 0
     }
@@ -140,7 +168,7 @@ class App extends React.Component{
             <DrumPad playAudio={this.playSound} keystroke="X" sound="drum8" soundFile={drum8}/>
             <DrumPad playAudio={this.playSound} keystroke="C" sound="drum9" soundFile={drum9}/>
            
-            {this.state.sound_playing != "" &&
+            {this.state.active_sounds != 0 &&
            <SoundChoiceDisplay soundPlaying = {this.state.sound_playing}/>
                 }
           </div>

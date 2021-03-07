@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './DrumPad.css';
-import soundFile2 from '../../media/drum-one/drum1.wav';
 
 class DrumPad extends React.Component {
 
